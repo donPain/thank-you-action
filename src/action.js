@@ -1,4 +1,5 @@
 require('dotenv').config();
+// @ts-ignore
 const fetch = require('node-fetch');
 const core = require('@actions/core');
 const github = require('@actions/github');
@@ -29,6 +30,7 @@ async function run() {
   console.log(`Found gif from Tenor: ${gifUrl}`);
 
   const { context = {} } = github;
+  // @ts-ignore
   const { pull_request } = context.payload;
 
   if ( !pull_request ) {
@@ -40,6 +42,7 @@ async function run() {
   const octokit = github.getOctokit(GITHUB_TOKEN)
 
   await octokit.issues.createComment({
+    // @ts-ignore
     ...context.repo,
     issue_number: pull_request.number,
     body: `${message}\n\n<img src="${gifUrl}" alt="${searchTerm}" />`

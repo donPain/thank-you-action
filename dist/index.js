@@ -5897,6 +5897,7 @@ function wrappy (fn, cb) {
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __nccwpck_require__) => {
 
 __nccwpck_require__(437).config();
+// @ts-ignore
 const fetch = __nccwpck_require__(467);
 const core = __nccwpck_require__(186);
 const github = __nccwpck_require__(438);
@@ -5927,6 +5928,7 @@ async function run() {
   console.log(`Found gif from Tenor: ${gifUrl}`);
 
   const { context = {} } = github;
+  // @ts-ignore
   const { pull_request } = context.payload;
 
   if ( !pull_request ) {
@@ -5938,6 +5940,7 @@ async function run() {
   const octokit = github.getOctokit(GITHUB_TOKEN)
 
   await octokit.issues.createComment({
+    // @ts-ignore
     ...context.repo,
     issue_number: pull_request.number,
     body: `${message}\n\n<img src="${gifUrl}" alt="${searchTerm}" />`
